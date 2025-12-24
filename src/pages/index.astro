@@ -1,5 +1,11 @@
 ---
+import '@fontsource/mountains-of-christmas/400.css';
+import '@fontsource/mountains-of-christmas/700.css';
+import '../styles/global.css'
+import { Card } from '../components/Card';
 
+
+const src = `/assests/${Math.floor(Math.random() * 13) + 1}.svg`
 ---
 
 <html lang="en">
@@ -8,9 +14,24 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Merry Christmas</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+
+  <script>
+		// @ts-expect-error cannot not find declaration file
+    import { createSnow } from 'pure-snow.js';
+
+    createSnow()
+  </script>
+
+	<body class="relative w-full min-h-screen bg-[#88aea6] py-4 px-4 flex font-bold flex-col font-mountain items-center text-center">
+		<div id="snow" data-count="50" class="absolute w-full h-full top-0 left-0 overflow-hidden pointer-events-none"></div>
+		<img class="mt-4" src="/assests/Merry.svg" alt="">
+
+		<img class="w-full max-w-[350px] h-[400px]" src={src} alt="">
+		<p class="text-[1.5rem] mt-8">Scroll down to reveal your card</p>
+    <p class="text-[1.5rem] mt-[50vh]">Click me to reveal</p>
+
+    <Card client:load />
 	</body>
 </html>
